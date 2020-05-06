@@ -8,19 +8,12 @@
 * Working_Directory
 
 
-source_code
+git source 이동 경로
 =========================
 
  Working_Directory  --> add --> staging --> commit --> local_repository -->  push --> server_repository
 
 
-Local_branch source_code
-==========================
-
-    add    ->     stage area ( 대기소 )                     ->
-  commit   ->     local_repogitory ( local_master )         ->
-  push     ->     server_repogitory ( server maset)
-  
 
 Server repogitory
 ===================
