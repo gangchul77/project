@@ -1,0 +1,19 @@
+git reset							source 변경, log 기록 삭제 ( rollback이후 log)
+===========
+						 
+git reset <rollback log_instance_id>				rollback 버전으로 소스변경후 		
+git commit -am 'rollback message'			
+git push origin +master
+
+git reset --hard
+============
+
+
+
+
+git revert							source 변경, log 기록 보존
+============
+
+git revert <rollback log_instance_id>				rollback 버전으로 소스변경후
+git commit -am 'commit_message'
+git push 

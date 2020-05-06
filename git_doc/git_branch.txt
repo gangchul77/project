@@ -1,0 +1,83 @@
+------------------------------------------------------------------------------------------------------------------------------------
+ branch 기본 명령어
+------------------------------------------------------------------------------------------------------------------------------------
+
+branch								팀원별 소스관리
+==========
+
+git branch <branch-name>						branch 만들기
+
+git branch								branch 전체보기 ( local )
+git branch -r							branch 전체보기 ( server )
+git branch -a							branch 전체보기 ( 양쪽 모두 )
+
+
+( git checkout 전에는 항상 commit을 해준다 )
+git checkout <branch-name>						branch 전환
+
+git push origin <branch-name>
+git log
+
+( ## local )
+git branch -d <branch-name>						브랜치 삭제
+git branch
+
+( ## remote == server )
+git push --delete origin < branch-name>
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+  master로 merge 하기
+------------------------------------------------------------------------------------------------------------------------------------
+
+branch
+=========
+(local branch)
+git
+소스 작업후
+
+git branch 								local 브런치 확인
+git add --all
+git commit -al 'commit_message'
+git push origin <작업중인 branch-name>					local branch -> server에 브런치 등록
+
+git checkout -p <branch-name> <file-name>					local브런치 지정파일 source master로 패치
+git checkout -p <branch-name>
+git add <file-name>							특정파일 adding
+git add --all							모든파일 adding
+
+git status								add 파일 목록 확인
+git commit -am 'commit_message'
+git push origin master
+
+
+merge
+=========
+( local branch  작업 후 local master로 소스 이동은 merge )
+
+git checkout <branch-name>						source 받을곳으로 branch 이동
+
+git checkout master							local 소스 master에 merge 하기위해 이동
+( local master로 이동 후 )
+( ## merge 전 항상  check  diff)
+
+git diff <branch-name>						소스 가져올 local <branch-name>
+git diff <branch-name> <file-name>					특정 파일만 확인
+
+git merge<소스 받을 branch-name>						source 가져올 branch
+
+## conflict (non fast-forward)
+git status
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+ 서버의 특정 branch 가져오기
+------------------------------------------------------------------------------------------------------------------------------------
+
+git checkout -t origin/<branch-name>					서버의 특정  branch 받아오기
+
+
+git push origin<branch-name>
+git pull origin<branch-name>
+
+

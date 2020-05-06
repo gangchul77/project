@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------------------
+ git structure
+--------------------------------------------------------------------------------------------
+
+
+* Server_Repogitory
+* Local_Repogitory
+* Working_Directory
+
+
+source_code
+=========================
+
+ Working_Directory  --> add --> staging --> commit --> local_repository -->  push --> server_repository
+
+
+Local_branch source_code
+==========================
+
+    add    ->     stage area ( 대기소 )                     ->
+  commit   ->     local_repogitory ( local_master )         ->
+  push     ->     server_repogitory ( server maset)
+  
+
+Server repogitory
+===================
+origin/master
+origin/branch_name
+origin/...
+
+
+Local repogitory
+===================
+master
+branch_name
+....
+
+
+
+Local branch --> local master
+==============================
+
+(*local branch)
+git add -all & file-name
+git commit -am 'commit_message'
+git push origin/<local branch-name>                                        서버에 local_branch source 등록
+
+git checkout master                                                        Local master로 이동
+git merge <local branch_name>                                              local_branch에서 local_master로 source merge
