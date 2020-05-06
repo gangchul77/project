@@ -1,0 +1,356 @@
+
+---------------------------
+git 속도저하시 해결방법
+---------------------------
+
+https://www.socks-proxy.net/ 
+
+--------------------------------
+VScode code-settings-sync  git gist token
+--------------------------------
+39e34004480603818bef0d807afd259bcd7f6f86
+
+-----------------
+gist-github id
+-----------------
+https://gist.github.com/gangchul77/ed4fee9d575adb5451c2b611e079ce94
+
+
+
+-----------------------------------------------------------
+git 명령어
+-----------------------------------------------------------
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone             Clone a repository into a new directory
+   init              Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add               Add file contents to the index
+   mv                Move or rename a file, a directory, or a symlink
+   restore           Restore working tree files
+   rm                Remove files from the working tree and from the index
+   sparse-checkout   Initialize and modify the sparse-checkout
+
+examine the history and state (see also: git help revisions)
+   bisect            Use binary search to find the commit that introduced a bug
+   diff              Show changes between commits, commit and working tree, etc
+   grep              Print lines matching a pattern
+   log               Show commit logs
+   show              Show various types of objects
+   status            Show the working tree status
+
+grow, mark and tweak your common history
+   branch            List, create, or delete branches
+   commit            Record changes to the repository
+   merge             Join two or more development histories together
+   rebase            Reapply commits on top of another base tip
+   reset             Reset current HEAD to the specified state
+   switch            Switch branches
+   tag               Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch             Download objects and refs from another repository
+   pull              Fetch from and integrate with another repository or a local branch
+   push              Update remote refs along with associated objects
+
+
+-----------------------------------------------------------------------------------------
+# git  simpleStart	
+
+# git init
+# git status
+# git add
+# git commit
+# git restore
+-----------------------------------------------------------------------------------------
+
+git init				working directory .git folder  생성
+git status				working directory 상태확인
+git add <file-name>		working directory -> staging area 옮김
+git add --all
+
+git commit -m <file-name> '주석'	staging area  --> 	local repository 이동
+git commit -am '주석'
+
+# commit 은 local repogitory에서 관리를 의미하므로
+commit된 파일은 working directory에서 삭제를 하여도 다시 복원이 가능함을 의미함
+
+ex)
+# commit 파일 삭제 rm project_requirement
+# git status로 확인해보면 git checkout --<file-name>으로 복원가능
+
+# git checkout 기능이 switch / restore 분리됨
+# 기존 checkout 의 기능은  브랜치 생성 or 이동 / 복원 용도로 사용
+
+# switch 				브런치를 변경( 없는 경우 생성)
+# restore				변경사항 복원
+----------------
+# 브런치 삭제
+----------------
+git branch -d <branch-name>	로컬 브런치 삭제
+git branch --delete <branch-name>	
+
+git push origin :<branch-name>	원격 브런치 삭제
+
+-----------------------------------------------------------------------------------------
+# git remote	git --> github
+
+# git remote -v 	remote url 확인하기
+# git clone
+# git push
+# git pull
+
+-----------------------------------------------------------------------------------------
+
+git remote add origin <github-url>	github 연결
+
+git branch	
+git push origin master		git --> github source upload
+
+
+
+git clone <github-url>		git
+
+# 파일 수정/변경  후 github에 올리기
+git status			staging 상태확인
+git diff			수정/변경 내용확인
+git add .			현재 폴더의 모든파일 올리기
+git commit -m 'comment'	staging area --> local repository 올리기
+
+git remote -v 
+git branch
+
+
+
+
+git pull <remote url> <branch> = git pull origin <branch> = git pull origin master
+
+git push <remote url> <branch> = git push origin <branch> = git push origin master
+
+
+# github 최신파일로 변경 후 수정 올리기
+
+git pull origin master
+
+git add .
+git status
+
+git commit -m 'commit massage'
+git status
+
+git push origin master
+
+-----------------------------------------------------------------------------------------
+# git branch
+
+# git merge
+-----------------------------------------------------------------------------------------
+git switch <branch>	브런치 생성/변경
+
+# 파일수정 후 브런치 이동전 merge 하기전 add / commit 하기  
+# ( commit 하지 않은 내용은 브런치 이동시 사라짐 )
+
+git add .
+git status
+
+git commit -m 'commit massage'
+git status
+
+# 브런치 이동
+git switch <master>	merge 하기위헤 마스터브런치로 이동	
+git diff <branch-name> 	merge 할 내용 확인 ( master와 merge할 브런치 내용 비교하기 )
+
+
+-----------------------------------------------------------------------------------------
+# git Start
+-----------------------------------------------------------------------------------------
+
+git config --list
+git config user.name
+
+
+--global 모든폴더에 적용
+
+git config --global user.name gangchul77	
+git config --global user.email gangchul77@gmail.com
+
+git config --list | grep 'user.name'
+
+cat ~/.gitconfig
+
+-----------------------------
+git Server repository
+-----------------------------
+github.com repository 생성
+
+-----------------------------
+git local repository
+-----------------------------
+(working directory)
+
+git init     .git 폴더 생성
+.gitignore 파일생성       해당폴더에 서버에 올리지않을 목록 작성
+
+git add --all	해당폴더 repository .gitignore 목록제외 모두 add
+git add .		현재디렉토리  add
+
+git add <file명>	해당파일 add
+
+
+git commit -am '주석'  	working directory   -->  local repository
+
+
+----------------------------
+git server repository 연결
+----------------------------
+git remote add origin <git-remote-url>	git-remote-url: repository clone 주소
+					server repository 와 연결작업
+-----------------------------
+git source 올리기
+----------------------------
+git pull		메인소스올리기전에 서버동기화 먼저(서버최신 소스를 다운받기)
+git push -u origin master	서버 repogitory  메인에 소스올리기
+git push -fu origin master	강제로 올리기
+
+-----------------------------
+git source 올리기 총정리
+----------------------------
+
+git add  --all | <file명>		파일, 폴더, 모든파일 올리기
+				stage area 에 한 번 올린 파일은
+				다시 add 하지않고 바로 commit 
+
+git status 			stage area 올린파일 확인
+
+git commit -am '주석'		commit하며 주석달기 
+
+----------------------------
+git repository source pull
+----------------------------
+
+git clone <repository url>
+
+-------------------------------------------------
+git  log   		git commit 내역
+-------------------------------------------------
+git log			
+git log --graph --oneline		log가 길어서 안보일시 space bar 클릭
+
+-------------------------------------------------
+git  Reset & Revert	되돌리기
+-------------------------------------------------
+
+git reset	--[hard | soft | mixed]
+# ( 주의 ) hard는 모든소스 되돌림(동료소스포함, 사용하면안됨)
+
+git reset <revision ID> 	소스변경없이 revision으로 이동
+git commit -am 'rollback 222222' 	22222222 revision으로 이동
+				2222 상태로 파일수정 후 push
+git push
+
+
+git revert	 <revision ID>		history 쌓임, 소스는 그대로
+				소스변경후 commit
+git commit -am 'rollback 222222'	
+git push
+
+
+---------------------------------------
+git branch	브런치 만들기
+---------------------------------------
+git branch <branch-name>			브런치 만들기
+git branch  				local 브런치 정보확인
+git branch -r				server 브런치 정보확인
+git branch -a 				local / server 브런치 정보 모두 보기
+
+ 
+
+git checkout <branch-name>  		다른 브런치로 전환
+
+git push origin <branch-name>		브런치 생성후엔 push도 브런치명.. 메인은 master 표기
+git log					
+
+다른동료폴더> git clone <git-remote-url>  	OR 다른동료폴더> git pull
+
+	# 여기서 branch 내용까지 받아지면 성공
+	# branch를 작업하는 쪽 외에는 소스 안보임
+
+-----------------------------------------------
+master로 merge 하기	(작업폴더에서)
+-----------------------------------------------
+
+git checkout master			master로 이동
+
+# 브런치 이동시 항상 신경써야될것
+git add --all
+git commit -am '주석'
+
+# merge 하기전 항상 뭐가다른지 체크
+git diff <branch-name>
+git diff <branch-name> <file-name>
+
+git checkout -p <branch-name> <file-name> 	브런치에 있는 파일을 패치하겠다
+git checkout -p <branch-name>		브런치에 있는 모든파일 패치
+
+# 브런치의 특정파일만 master로 commit 올리기
+git checkout master
+git add <file-name>
+git commit -am '주석'
+git push origin master
+
+# 서버의 특정 브런치 가져오기
+git checkout -t origin/<branch-name>		서버의 특정 브런치 가져오기
+git pull origin/<branch-name>		특정브런치 가져올시 origin/<branch-name>명시
+
+
+-----------------------------------------------
+git Collaborators & Fork	   공동작업시 등록하기
+-----------------------------------------------
+settings -> Manage access -> Invite a collaborator 로 초대하기
+초대자 
+
+Fork
+
+
+git checkout <수신 branch-name>		merge하기전 받을곳으로 이동
+git merge <발신 branch-name>		merge 받을 브런치명 
+
+#Error
+#conflict		(non fast-forward)		
+git status
+
+# 브런치 삭제하기
+local> git branch -d <branch-name>			local 브런치 삭제
+local> git branch
+remote> git push --delete origin <branch-name>	서버에 브런치 삭제
+
+-----------------------------------------------
+git automation_conneting
+-----------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------
