@@ -17,9 +17,9 @@ https://gist.github.com/gangchul77/ed4fee9d575adb5451c2b611e079ce94
 
 
 
------------------------------------------------------------
+-------------------------------------------------------------------------------
 git 명령어
------------------------------------------------------------
+-------------------------------------------------------------------------------
 usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
            [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
            [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
@@ -92,6 +92,7 @@ ex)
 
 # switch 				브런치를 변경( 없는 경우 생성)
 # restore				변경사항 복원
+
 ----------------
 # 브런치 삭제
 ----------------
@@ -197,7 +198,7 @@ git local repository
 (working directory)
 
 git init     .git 폴더 생성
-.gitignore 파일생성       해당폴더에 서버에 올리지않을 목록 작성
+.gitignore   파일생성       해당폴더에 서버에 올리지않을 목록 작성
 
 git add --all	해당폴더 repository .gitignore 목록제외 모두 add
 git add .		현재디렉토리  add
